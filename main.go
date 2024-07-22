@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+)
 
 func main() {
-	fmt.Println("Init go JWT auth.")
+	http.HandleFunc("/login", Login)
+	http.HandleFunc("/home", Home)
+	http.HandleFunc("/refresh", Refresh)
+
+	log.Fatal(http.ListenAndServe(":3000", nil))
 }
